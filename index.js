@@ -27,7 +27,7 @@ function menu() {
         medidaDeViniloSolvente = 0;
         medidaDeViniloLatex = 0;
         cantidadDeEstampados = 0;
-        servicio = parseInt(prompt("Hola " + nombre + "\nElegi el servicio:\n1_impresiones \n2_Remeras Estampadas "))
+        servicio = parseInt(prompt("Hola " + nombre + "\nElegi el servicio:\n1_Impresiones \n2_Remeras Estampadas "))
         if ((servicio != 1) && (servicio != 2)) {
             alerta()
         }
@@ -38,32 +38,79 @@ function alerta() {
     alert("Elegi una opcion de la lista!")
 }
 
+function SolventeMedida(){
+    do {
+        medidaDeViniloSolvente = 0
+        let solvente1x1 = impresion * 100
+        let solvente2x1 = impresion * 200
+        let solvente3x1 = impresion * 300
+        medidaDeViniloSolvente = parseInt(prompt(nombre + " Elegi la medida de tu vinilo impreso con Solvente: \n1_ 1mtr. x 1mtr. ($"+ solvente1x1 + ")\n2_ 2mtr. x 1mtr. ($"+ solvente2x1 +")\n3_ 3mtr. x 1mtr. ($"+ solvente3x1 +") \n4_Volver al Menu anterior"))
+        switch (medidaDeViniloSolvente) {
+            case 1:                
+                break;
+            case 2:                
+                break;
+            case 3:                
+                break;
+            case 4:                
+                break;
+            default:
+                medidaDeViniloSolvente = 0
+                alerta()
+                break;
+        }
+    } while (medidaDeViniloSolvente == 0)
+}
+    
+function LatexMedida(){
+    do {
+        medidaDeViniloLatex = 0
+        let latex1x1 = impresion * 100
+        let latex2x1 = impresion * 200
+        let latex3x1 = impresion * 300
+        medidaDeViniloLatex = parseInt(prompt(nombre + " Elegi la medida de tu vinilo Impreso con Latex: \n1_ 1mtr. x 1mtr. ($"+ latex1x1 + ")\n2_ 2mtr. x 1mtr. ($"+ latex2x1 +")\n3_ 3mtr. x 1mtr. ($"+ latex3x1 +") \n4_Volver al Menu anterior"))
+        switch (medidaDeViniloLatex) {
+            case 1:                
+                break;
+            case 2:                
+                break;
+            case 3:                
+                break;
+            case 4:                
+                break;
+            default:
+                medidaDeViniloLatex = 0
+                alerta()
+                break;
+        }
+    } while (medidaDeViniloLatex == 0)
+}
+
 function Estampados(){
     do {
         cantidadDeEstampados = 0
-        cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($100)\n2_Espalda ($200)\n3_Frente y espalda($300)\n4_Volver al menu anterior"))
+        let valorFrente = talleRemera * 100
+        let valorEspalda = talleRemera * 200
+        let valorFyE = valorEspalda + valorFrente
+        cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($" + valorFrente +") \n2_Espalda ($" +  valorEspalda+")" +"\n3_Frente y espalda ($" + valorFyE +")" + "\n4_Volver al menu anterior"))
         switch (cantidadDeEstampados){
-            case 1:
-                cantidadDeEstampados = 1
+            case 1:                
                 break;
-            case 2:
-                cantidadDeEstampados = 2
+            case 2:                
                 break;
-            case 3:
-                cantidadDeEstampados = 3
+            case 3:                
                 break;
-            case 4:
-                cantidadDeEstampados = 4
+            case 4:                
                 break;
             default:
                 cantidadDeEstampados = 0
                 alerta()
                 break;
         }
-    }while( cantidadDeEstampados == 0)
+    }while(cantidadDeEstampados == 0)
 }
 
-//INGRESAR USUARIo
+//INGRESAR USUARIO
 solictarNombre()
 
 //SELECCION DE SERVICIO
@@ -78,53 +125,11 @@ do {
                 impresion = parseInt(prompt(nombre + " Elegi el tipo de impresion para tu vinilo: \n1_Solvente ($100 x M2) \n2_Latex ($200 x M2)\n3_Volver al Menu anteriror"))                
                 switch (impresion) {
                     case 1:
-                        do {
-                            medidaDeViniloSolvente = 0
-                            medidaDeViniloSolvente = parseInt(prompt(nombre + " Elegi la medida de tu vinilo Solvente: \n1_ 1mtr. x 1mtr. ($100) \n2_ 2mtr. x 1mtr. ($200) \n3_ 3mtr. x 1mtr. ($300) \n4_Volver al Menu anterior"))
-                            switch (medidaDeViniloSolvente) {
-                                case 1:
-                                    medidaDeViniloSolvente = 1
-                                    break;
-                                case 2:
-                                    medidaDeViniloSolvente = 2
-                                    break;
-                                case 3:
-                                    medidaDeViniloSolvente = 3
-                                    break;
-                                case 4:
-                                    medidaDeViniloSolvente = 4
-                                    break;
-                                default:
-                                    medidaDeViniloSolvente = 0
-                                    alerta()
-                                    break;
-                            }
-                        } while (medidaDeViniloSolvente == 0)                        
+                        SolventeMedida()                                               
                         break;
 
                     case 2:
-                        do {
-                            medidaDeViniloLatex = 0
-                            medidaDeViniloLatex = parseInt(prompt(nombre + " Elegi la medida de tu vinilo Latex: \n1_ 1mtr. x 1mtr. ($200) \n2_ 2mtr. x 1mtr. ($400) \n3_ 3mtr. x 1mtr. ($600) \n4_Volver al Menu anterior"))
-                            switch (medidaDeViniloLatex) {
-                                case 1:
-                                    medidaDeViniloLatex = 1
-                                    break;
-                                case 2:
-                                    medidaDeViniloLatex = 2
-                                    break;
-                                case 3:
-                                    medidaDeViniloLatex = 3
-                                    break;
-                                case 4:
-                                    medidaDeViniloLatex = 4
-                                    break;
-                                default:
-                                    medidaDeViniloLatex = 0
-                                    alerta()
-                                    break;
-                            }
-                        } while (medidaDeViniloLatex == 0)
+                        LatexMedida()
                         break;
                     case 3:
                         impresion = 3
@@ -140,19 +145,20 @@ do {
         case 2:
             do {
                 talleRemera = 0
+                cantidadDeEstampados = 0
                 talleRemera = parseInt(prompt("Elegi el talle de tu remera: \n1_S ($200) \n2_M ($400) \n3_L ($600) \n4_XL ($800) \n5_Volver al Menu anterior"))
                 switch (talleRemera) {
                     case 1:
                         Estampados()
                         break;
                     case 2:
-                        cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($200)\n2_Espalda ($300)\n3_Frente y espalda($500)"))
+                        Estampados()
                         break;
-                    case 3:
-                        cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($300)\n2_Espalda ($400)\n3_Frente y espalda($700)"))
+                    case 3: 
+                        Estampados()
                         break;
-                    case 4:
-                        cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($400)\n2_Espalda ($500)\n3_Frente y espalda($900)"))
+                    case 4: 
+                        Estampados()
                         break;
                     case 5:
                         talleRemera = 5
@@ -162,7 +168,7 @@ do {
                         talleRemera = 0
                         break;
                 }
-            } while (talleRemera == 0)
+            } while ((talleRemera == 0) || (cantidadDeEstampados == 4))
             break;
 
         default:
