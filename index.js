@@ -1,5 +1,5 @@
 //declaracion de variables
-const IVA = 1.21;
+const IVA = 0.21;
 let cuenta = 0;
 let servicio = 0;
 let impresion = 0;
@@ -7,6 +7,9 @@ let talleRemera = 0;
 let cantidadDeEstampados = 0;
 let medidaDeViniloSolvente = 0;
 let medidaDeViniloLatex = 0;
+let valorFrente = 0;
+let valorEspalda = 0;
+let valorFyE = 0;
 let cantidad = 0;
 let nombre = "";
 //FUNCIONES
@@ -89,9 +92,9 @@ function LatexMedida(){
 function Estampados(){
     do {
         cantidadDeEstampados = 0
-        let valorFrente = talleRemera * 100
-        let valorEspalda = talleRemera * 200
-        let valorFyE = valorEspalda + valorFrente
+        valorFrente = talleRemera * 100
+        valorEspalda = talleRemera * 200
+        valorFyE = valorEspalda + valorFrente
         cantidadDeEstampados = parseFloat(prompt("Cuantos estampados vas querer: \n1_Frente ($" + valorFrente +") \n2_Espalda ($" +  valorEspalda+")" +"\n3_Frente y espalda ($" + valorFyE +")" + "\n4_Volver al menu anterior"))
         switch (cantidadDeEstampados){
             case 1:                
@@ -178,17 +181,58 @@ do {
     }
 } while ( (servicio == 0) || (impresion == 3) || (talleRemera == 5));
 
-
 cantidad = parseFloat(prompt("Cuantas unidades vas a querer:"));
-
 
 console.log("logs finales")
 console.log("Servicio: " + servicio)
 console.log("Tipo de impresion: " + impresion)
-console.log("Talle de Remera: " + talleRemera)
-console.log("Cantidad de Estampados: " + cantidadDeEstampados)
 console.log("Medida de Vinilo Solvente: " + medidaDeViniloSolvente)
 console.log("Medida de Vinilo Latex: " + medidaDeViniloLatex)
+console.log("Talle de Remera: " + talleRemera)
+console.log("Cantidad de Estampados: " + cantidadDeEstampados)
+console.log("Valor de Estampados Frente " + valorFrente )
+console.log("Valor de Estampados Espalda " + valorEspalda )
+console.log("Valor de Estampados Frente y Espalda " + valorFyE )
 console.log("Unidades: " + cantidad)
+
+let precioSolvente = 100;
+let precioLatex = 200;
+let precioRemera = 200;
+const multiplicacion = (valor1, valor2, valor3) => (valor1 * valor2) * valor3;
+const calculoIva = (valor1) => (valor1)* IVA;
+
+if((servicio == 1) && (impresion == 1)){
+    subtotal = multiplicacion(precioSolvente, medidaDeViniloSolvente, cantidad)
+    impuestos = calculoIva(subtotal);
+    total = subtotal + impuestos;
+    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
+}else if((servicio ==1) && (impresion == 2)){
+    subtotal = multiplicacion(precioLatex, medidaDeViniloLatex, cantidad)
+    impuestos = calculoIva(subtotal);
+    total = subtotal + impuestos;
+    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
+}else if((servicio == 2) && (cantidadDeEstampados == 1)){
+    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFrente;
+    impuestos = calculoIva(subtotal);
+    total = subtotal + impuestos;
+    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)    
+}else if((servicio == 2) && (cantidadDeEstampados == 2)){
+    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorEspalda;
+    impuestos = calculoIva(subtotal);
+    total = subtotal + impuestos;
+    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
+}else if((servicio == 2) && (cantidadDeEstampados == 3)){
+    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFyE;
+    impuestos = calculoIva(subtotal);
+    total = subtotal + impuestos;
+    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
+}else{
+    alert("La compra fallo! Volve a intentarlo por favor")
+}
+
+cuenta += total
 console.log(cuenta)
 
+                
+                
+                
