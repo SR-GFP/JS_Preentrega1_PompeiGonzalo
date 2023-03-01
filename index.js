@@ -12,6 +12,7 @@ let valorEspalda = 0;
 let valorFyE = 0;
 let cantidad = 0;
 let nombre = "";
+let seguirComprando = 0;
 //FUNCIONES
 function solictarNombre() {
     do {
@@ -113,125 +114,147 @@ function Estampados(){
     }while(cantidadDeEstampados == 0)
 }
 
+function continuarCompra(){
+    seguirComprando = parseInt(prompt("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total + "\n1_Seguir comprando\n2_Finalizar"))
+        switch(seguirComprando){
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                seguirComprando = 1
+                break;
+        }
+}
+
 //INGRESAR USUARIO
 solictarNombre()
 
 //SELECCION DE SERVICIO
 do {
-    menu()
-    switch (servicio) {
-        case 1:
-            do {
-                impresion = 0
-                medidaDeViniloLatex = 0
-                medidaDeViniloSolvente = 0
-                impresion = parseInt(prompt(nombre + " Elegi el tipo de impresion para tu vinilo: \n1_Solvente ($100 x M2) \n2_Latex ($200 x M2)\n3_Volver al Menu anteriror"))                
-                switch (impresion) {
-                    case 1:
-                        SolventeMedida()                                               
-                        break;
-
-                    case 2:
-                        LatexMedida()
-                        break;
-                    case 3:
-                        impresion = 3
-                        break;
-                    default:
-                        impresion = 0
-                        alerta()
-                        break;
-                }
-            } while ((impresion == 0) || (medidaDeViniloLatex == 4) || (medidaDeViniloSolvente == 4))
-            break;
-            
-        case 2:
-            do {
-                talleRemera = 0
-                cantidadDeEstampados = 0
-                talleRemera = parseInt(prompt("Elegi el talle de tu remera: \n1_S ($200) \n2_M ($400) \n3_L ($600) \n4_XL ($800) \n5_Volver al Menu anterior"))
-                switch (talleRemera) {
-                    case 1:
-                        Estampados()
-                        break;
-                    case 2:
-                        Estampados()
-                        break;
-                    case 3: 
-                        Estampados()
-                        break;
-                    case 4: 
-                        Estampados()
-                        break;
-                    case 5:
-                        talleRemera = 5
-                        break;
-                    default:
-                        alerta()
-                        talleRemera = 0
-                        break;
-                }
-            } while ((talleRemera == 0) || (cantidadDeEstampados == 4))
-            break;
-
-        default:
-            servicio = 0
-            alerta()
-            break;
+    console.log(cuenta)
+    seguirComprando = 0;
+    do {
+        menu()
+        switch (servicio) {
+            case 1:
+                do {
+                    impresion = 0
+                    medidaDeViniloLatex = 0
+                    medidaDeViniloSolvente = 0
+                    impresion = parseInt(prompt(nombre + " Elegi el tipo de impresion para tu vinilo: \n1_Solvente ($100 x M2) \n2_Latex ($200 x M2)\n3_Volver al Menu anteriror"))                
+                    switch (impresion) {
+                        case 1:
+                            SolventeMedida()                                               
+                            break;
+    
+                        case 2:
+                            LatexMedida()
+                            break;
+                        case 3:
+                            impresion = 3
+                            break;
+                        default:
+                            impresion = 0
+                            alerta()
+                            break;
+                    }
+                } while ((impresion == 0) || (medidaDeViniloLatex == 4) || (medidaDeViniloSolvente == 4))
+                break;
+                
+            case 2:
+                do {
+                    talleRemera = 0
+                    cantidadDeEstampados = 0
+                    talleRemera = parseInt(prompt("Elegi el talle de tu remera: \n1_S ($200) \n2_M ($400) \n3_L ($600) \n4_XL ($800) \n5_Volver al Menu anterior"))
+                    switch (talleRemera) {
+                        case 1:
+                            Estampados()
+                            break;
+                        case 2:
+                            Estampados()
+                            break;
+                        case 3: 
+                            Estampados()
+                            break;
+                        case 4: 
+                            Estampados()
+                            break;
+                        case 5:
+                            talleRemera = 5
+                            break;
+                        default:
+                            alerta()
+                            talleRemera = 0
+                            break;
+                    }
+                } while ((talleRemera == 0) || (cantidadDeEstampados == 4))
+                break;
+    
+            default:
+                servicio = 0
+                alerta()
+                break;
+        }
+    } while ( (servicio == 0) || (impresion == 3) || (talleRemera == 5));
+    
+    cantidad = parseFloat(prompt("Cuantas unidades vas a querer:"));
+    
+    console.log("logs finales")
+    console.log("Servicio: " + servicio)
+    console.log("Tipo de impresion: " + impresion)
+    console.log("Medida de Vinilo Solvente: " + medidaDeViniloSolvente)
+    console.log("Medida de Vinilo Latex: " + medidaDeViniloLatex)
+    console.log("Talle de Remera: " + talleRemera)
+    console.log("Cantidad de Estampados: " + cantidadDeEstampados)
+    console.log("Valor de Estampados Frente " + valorFrente )
+    console.log("Valor de Estampados Espalda " + valorEspalda )
+    console.log("Valor de Estampados Frente y Espalda " + valorFyE )
+    console.log("Unidades: " + cantidad)
+    
+    let precioSolvente = 100;
+    let precioLatex = 200;
+    let precioRemera = 200;
+    const multiplicacion = (valor1, valor2, valor3) => (valor1 * valor2) * valor3;
+    const calculoIva = (valor1) => (valor1)* IVA;
+    
+    if((servicio == 1) && (impresion == 1)){
+        subtotal = multiplicacion(precioSolvente, medidaDeViniloSolvente, cantidad)
+        impuestos = calculoIva(subtotal);
+        total = subtotal + impuestos;
+        cuenta += total;
+        continuarCompra();
+    }else if((servicio ==1) && (impresion == 2)){
+        subtotal = multiplicacion(precioLatex, medidaDeViniloLatex, cantidad)
+        impuestos = calculoIva(subtotal);
+        total = subtotal + impuestos;
+        cuenta += total;
+        continuarCompra();
+    }else if((servicio == 2) && (cantidadDeEstampados == 1)){
+        subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFrente;
+        impuestos = calculoIva(subtotal);
+        total = subtotal + impuestos;
+        cuenta += total
+        continuarCompra();
+    }else if((servicio == 2) && (cantidadDeEstampados == 2)){
+        subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorEspalda;
+        impuestos = calculoIva(subtotal);
+        total = subtotal + impuestos;
+        cuenta += total
+        continuarCompra();
+    }else if((servicio == 2) && (cantidadDeEstampados == 3)){
+        subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFyE;
+        impuestos = calculoIva(subtotal);
+        total = subtotal + impuestos;
+        cuenta += total
+        continuarCompra()
+    }else{
+        alert("La compra fallo! Volve a intentarlo por favor")
     }
-} while ( (servicio == 0) || (impresion == 3) || (talleRemera == 5));
+}while(seguirComprando == 1)
 
-cantidad = parseFloat(prompt("Cuantas unidades vas a querer:"));
-
-console.log("logs finales")
-console.log("Servicio: " + servicio)
-console.log("Tipo de impresion: " + impresion)
-console.log("Medida de Vinilo Solvente: " + medidaDeViniloSolvente)
-console.log("Medida de Vinilo Latex: " + medidaDeViniloLatex)
-console.log("Talle de Remera: " + talleRemera)
-console.log("Cantidad de Estampados: " + cantidadDeEstampados)
-console.log("Valor de Estampados Frente " + valorFrente )
-console.log("Valor de Estampados Espalda " + valorEspalda )
-console.log("Valor de Estampados Frente y Espalda " + valorFyE )
-console.log("Unidades: " + cantidad)
-
-let precioSolvente = 100;
-let precioLatex = 200;
-let precioRemera = 200;
-const multiplicacion = (valor1, valor2, valor3) => (valor1 * valor2) * valor3;
-const calculoIva = (valor1) => (valor1)* IVA;
-
-if((servicio == 1) && (impresion == 1)){
-    subtotal = multiplicacion(precioSolvente, medidaDeViniloSolvente, cantidad)
-    impuestos = calculoIva(subtotal);
-    total = subtotal + impuestos;
-    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
-}else if((servicio ==1) && (impresion == 2)){
-    subtotal = multiplicacion(precioLatex, medidaDeViniloLatex, cantidad)
-    impuestos = calculoIva(subtotal);
-    total = subtotal + impuestos;
-    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
-}else if((servicio == 2) && (cantidadDeEstampados == 1)){
-    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFrente;
-    impuestos = calculoIva(subtotal);
-    total = subtotal + impuestos;
-    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)    
-}else if((servicio == 2) && (cantidadDeEstampados == 2)){
-    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorEspalda;
-    impuestos = calculoIva(subtotal);
-    total = subtotal + impuestos;
-    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
-}else if((servicio == 2) && (cantidadDeEstampados == 3)){
-    subtotal = multiplicacion(precioRemera, talleRemera, cantidad) + valorFyE;
-    impuestos = calculoIva(subtotal);
-    total = subtotal + impuestos;
-    alert("El valor del producto selecionado es:\nSubtotal: $" + subtotal + "\nIVA: $" + impuestos + "\nTotal: $" + total)
-}else{
-    alert("La compra fallo! Volve a intentarlo por favor")
-}
-
-cuenta += total
 console.log(cuenta)
+alert("El valor total de tu compra es: $" + cuenta)
 
                 
                 
